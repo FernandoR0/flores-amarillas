@@ -293,25 +293,73 @@
   }
 }
 
-/* ============ CELULARES PEQUEÑOS - MENSAJES Y FINAL ============ */
-@media (max-width: 480px) {
-  /* Mensajes después del regalo */
-  body > div[style*="position: fixed"][style*="font-size: 4rem"] {
-    font-size: 1.6rem !important;
-    padding: 10px 15px !important;
-  }
-
-  /* Imagen final */
-  body > div[style*="position: fixed"] > div[style*="width: 800px"] {
-    width: 95vw !important;
-    height: 200px !important;
-  }
-
-  /* Texto final */
-  body > div[style*="position: fixed"] > div[style*="font-size: 4rem"] {
-    font-size: 2rem !important;
-    padding: 10px 15px !important;
-  }
+@media (max-width: 600px) {
+    .flag-background {
+        width: 94vw;
+        height: 68px;
+        top: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 14px;
+    }
+    .title-text {
+        font-size: 1.1rem;
+        top: 48px;
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: normal;
+        padding: 0 2vw;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+    }
+    .bow-decoration {
+        width: 36px;
+        height: 28px;
+        top: 12px;
+        left: 50%;
+        right: auto;
+        transform: translateX(-50%) rotate(0deg);
+    }
+    .main-container {
+        padding: 0 1vw;
+        min-height: 100vh;
+        justify-content: flex-start;
+    }
+    .ribbon-left, .ribbon-right {
+        width: 13px;
+        height: 100vh;
+        top: 0;
+    }
+    .ribbon-left { left: 0; }
+    .ribbon-right { right: 0; }
+    .gift-box {
+        width: 78vw;
+        max-width: 156px;
+        height: 78vw;
+        max-height: 156px;
+        margin-top: 44px;
+        margin-bottom: 18px;
+    }
+    .instruction {
+        font-size: 0.95rem;
+        margin-top: 10px;
+        padding: 0 6vw;
+        line-height: 1.2;
+    }
+    .celebration-message {
+        font-size: 1.07rem !important;
+        padding: 8px 6vw !important;
+        border-radius: 12px !important;
+        top: 56% !important;
+        left: 50% !important;
+        transform: translate(-50%, -50%) !important;
+        white-space: normal !important;
+        max-width: 92vw !important;
+        min-width: 0 !important;
+    }
+    .yellow-flower {
+        width: 44px;
+        height: 44px;
+    }
 }
 
     </style>
