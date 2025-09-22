@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz 21 de Septiembre</title>
+    <!-- Fuente romántica -->
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* ============ FONDO PASTEL ============ */
+        body {
+            min-height: 100vh;
+            /* AQUÍ PUEDES CAMBIAR LOS COLORES DEL FONDO */
+            background: linear-gradient(135deg, #b52568ff 0%, #540249ff 25%, #f08cf0ff 50%, #bb5a84ff 75%, #ffdcf6ff 100%);
+            font-family: 'Dancing Script', cursive;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* ============ LISTONES COMO IMÁGENES ============ */
+        .ribbon-left, .ribbon-right {
+            position: fixed;
+            top: 0;
+            width: 350px;
+            height: 100vh;
+            background-size: cover;
+            background-position: center;
+            background-repeat: repeat-y;
+            z-index: 10;
+        }
+
+        .ribbon-left {
+            left: 0;
+            background-image: url('/images/fondo1.jpg');
+        }
+
+        .ribbon-right {
+            right: 0;
+            background-image: url('/images/fondo2.jpg');
+        }
+
+        /* ============ SOLO DOS MOÑOS SUPERIORES EN LOS LISTONES ============ */
+        .bow-decoration {
+            position: fixed;
+            width: 350px;          /* MÁS GRANDE */
+            height: 295px;         /* MÁS GRANDE */
+            background-image: url('/images/moño.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 0;      /* SIN CONTENEDOR CIRCULAR */
+            box-shadow: none;      /* SIN SOMBRA */
+            top: 150px;
+            z-index: 25;
+        }
+
+        .bow-left {
+            left: 210px;
+            transform: translateX(-50%) rotate(-45deg); /* SLASH \ */
+        }
+
+        .bow-right {
+            right: -132px;
+            transform: translateX(-50%) rotate(45deg); /* SLASH / */
+        }
+
+        /* ============ TÍTULO CON BANDERA ============ */
+        /* ============ IMAGEN DE BANDERA DE FONDO ============ */
+        .flag-background {
+            position: fixed;
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1600px;
+            height: 300px;
+            background-image: url('/images/pngwing.com.png');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            animation: flagWave 4s ease-in-out infinite;
+            z-index: 15;
+        }
+
+        /* ============ TÍTULO SIN CONTAINER ============ */
+        .title-text {
+            position: fixed;
+            top: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 3.5rem;
+            white-space: nowrap; 
+            font-weight: 700;
+            color: #040404ff;
+            text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9);
+            letter-spacing: 3px;
+            text-align: center;
+            z-index: 20;
+        }
+
+        /* ============ ANIMACIÓN DE LA BANDERA ============ */
+        @keyframes flagWave {
+            0%, 100% { 
+                transform: translateX(-50%) rotateY(-8deg) rotateX(2deg);
+                border-radius: 20px 30px 30px 20px;
+            }
+            50% { 
+                transform: translateX(-50%) rotateY(8deg) rotateX(-2deg);
+                border-radius: 30px 20px 20px 30px;
+            }
+        }
+
+        /* ============ CONTENEDOR PRINCIPAL ============ */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            /* MÁRGENES LATERALES - CAMBIAR PARA MÁS/MENOS ESPACIO */
+            padding: 0 120px;
+        }
+
+        /* ============ IMAGEN FLOTANTE ============ */
+        .gift-box {
+            /* TAMAÑO DE LA IMAGEN - CAMBIAR ESTOS VALORES */
+            width: 300px;
+            height: 300px;
+            /* AQUÍ VAS A PONER TU IMAGEN: background-image: url('/images/regalo.png'); */
+            background-image: url('/images/regalo.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+            /* CAMBIAR margin-top PARA SUBIR/BAJAR LA IMAGEN */
+            margin-top: 200px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            /* VELOCIDAD DE REBOTE - CAMBIAR 2s PARA MÁS RÁPIDO/LENTO */
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        .gift-box:hover {
+            /* EFECTO AL PASAR EL MOUSE - CAMBIAR 1.1 PARA MÁS/MENOS ZOOM */
+            transform: scale(1.1);
+        }
+        
+        .gift-box.clicked {
+            animation: none !important;
+            transform: none !important;
+        }
+
+        /* ============ ANIMACIONES ============ */
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-25px); }
+        }
+
+        /* TEXTO DE INSTRUCCIÓN */
+        .instruction {
+            margin-top: 30px;
+            color: #f4eeeaff;
+            font-size: 2.8rem;
+            font-weight: 600;
+            text-align: center;
+            animation: pulse 2s ease-in-out infinite;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.7; }
+            50% { opacity: 1; }
+        }
+
+        /* ============ EFECTOS DE CELEBRACIÓN ============ */
+        .celebration-particle {
+            position: fixed;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        .confetti {
+            width: 10px;
+            height: 10px;
+            animation: fall 3s linear forwards;
+        }
+
+        .balloon {
+            width: 20px;
+            height: 30px;
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: fall 4s linear forwards;
+        }
+
+        .serpentina {
+            width: 3px;
+            height: 20px;
+            animation: fall 3.5s linear forwards;
+        }
+
+        @keyframes fall {
+            0% { 
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ============ MENSAJES ============ */
+        .celebration-message {
+            position: fixed !important;
+            top: 50% !important;
+            left: 50% !important;
+            transform: translate(-50%, -50%) !important;
+            font-size: 5rem !important;
+            font-weight: 700 !important;
+            font-family: 'Dancing Script', cursive !important;
+            text-align: center !important;
+            z-index: 99999 !important;
+            background: rgba(172, 229, 195, 0.95) !important;
+            padding: 30px 50px !important;
+            border-radius: 20px !important;
+            white-space: nowrap !important;
+            display: block !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+        }
+
+        @keyframes testFall {
+            0% { 
+                transform: translateY(0px);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+        /* ============ FLORES AMARILLAS ============ */
+        .yellow-flower {
+            position: fixed;
+            width: 80px;
+            height: 80px;
+            background-image: url('/images/flores.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 998;
+            animation: flowerFall 4s ease-in forwards;
+        }
+
+        @keyframes flowerFall {
+            0% { 
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 1;
+            }
+            100% { 
+                transform: translateY(100vh) rotate(180deg);
+                opacity: 0.8;
+            }
+        }
+
+        .hidden {
+            opacity: 0 !important;
+            transition: opacity 1s ease-out;
+        }
+
+        /* ============ RESPONSIVE PARA MÓVILES ============ */
+        @media (max-width: 768px) {
+            .flag-background { 
+                width: 90vw;
+                height: 120px;
+                top: 60px;
+            }
+            .title-text { 
+                font-size: 3rem; 
+                top: 120px;
+            }
+            .bow-decoration {
+                width: 60px;
+                height: 60px;
+                top: 60px;
+            }
+            .main-container { 
+                padding: 0 60px; 
+            }
+            .ribbon-left, .ribbon-right { 
+                width: 60px; 
+            }
+            .gift-box {
+                width: 180px;
+                height: 180px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- LISTÓN IZQUIERDO CON MOÑO -->
+    <div class="ribbon-left">
+        <div class="bow-decoration bow-left"></div>
+    </div>
+
+    <!-- LISTÓN DERECHO CON MOÑO -->
+    <div class="ribbon-right">
+        <div class="bow-decoration bow-right"></div>
+    </div>
+
+    <!-- TÍTULO CON IMAGEN DE BANDERA -->
+    <div class="flag-background"></div>
+    <h1 class="title-text">FELIZ 21 DE SEPTIEMBRE</h1>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-container">
+        <!-- REGALO -->
+        <div class="gift-box" id="giftBox"></div>
+        <!-- TEXTO DE INSTRUCCIÓN -->
+        <div class="instruction">¡Haz click en el regalo! Mi pequeña cachuda :3🎁</div>
+    </div>
+
+    <script>
+        console.log('Script cargado correctamente');
+        
+        // ============ EFECTOS DE CELEBRACIÓN ============
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM cargado');
+            const giftBox = document.getElementById('giftBox');
+            console.log('Regalo encontrado:', giftBox);
+            
+            if (!giftBox) {
+                console.error('No se encontró el elemento giftBox');
+                return;
+            }
+            
+            giftBox.addEventListener('click', function() {
+                console.log('¡¡¡ CLICK DETECTADO !!!');
+                
+                // Evitar múltiples clicks
+                giftBox.style.pointerEvents = 'none';
+                
+                // 1. CREAR EFECTOS DE CELEBRACIÓN
+                createCelebrationEffects();
+                
+                // 2. OCULTAR ELEMENTOS DESPUÉS DE 1 SEGUNDO
+                setTimeout(() => {
+                    hideExistingElements();
+                }, 1000);
+                
+                // 3. PRIMER MENSAJE DESPUÉS DE 2 SEGUNDOS
+                setTimeout(() => {
+  const line1 = "\u00A0".repeat(3) + "NO HAY NADA PARA";  // sangría a la primera línea
+  const line2 = "\u00A0".repeat(7) + "LAS INFIELES";     // sangría a la segunda línea
+  showMessage(line1 + "\n" + line2, "#1c0202ff");
+}, 2000);
+                 // 4. SEGUNDO MENSAJE DESPUÉS DE 4 SEGUNDOS
+                setTimeout(() => {
+                    showMessage(":DDDDD....", "#700808ff");
+                }, 5500);
+                                 // 4. SEGUNDO MENSAJE DESPUÉS DE 4 SEGUNDOS
+                setTimeout(() => {
+                    showMessage("¿¿¿QUE ESPERAS???", "#700808ff");
+                }, 7500);
+                // 4. SEGUNDO MENSAJE DESPUÉS DE 4 SEGUNDOS
+                setTimeout(() => {
+  const line1 = "\u00A0".repeat(0) + "BUENO, SOLO PORQUE";  // sangría a la primera línea
+  const line2 = "\u00A0".repeat(7) + "ME DAS PENA";     // sangría a la segunda línea
+  showMessage(line1 + "\n" + line2, "#1c0202ff");
+}, 9800);
+                
+// 5. FLORES DESPUÉS DE 6 SEGUNDOS
+                setTimeout(() => {
+                    hideMessage();
+                    showYellowFlowers();
+                }, 11000);
+
+// 6. IMAGEN FINAL DESPUÉS DE 10 SEGUNDOS
+setTimeout(() => {
+    const finalContainer = document.createElement('div');
+    finalContainer.innerHTML = `
+        <div style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; z-index: 99999; opacity: 1; transition: opacity 2s ease-in;">
+            <div style="width: 800px; height: 500px; background-image: url('/images/flores1.jpg'); background-size: cover; background-position: center; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); margin-bottom: 20px;"></div>
+            <div style="font-size: 4rem; font-weight: 700; color: #FF0066; text-shadow: 5px 5px 8px rgba(0, 0, 0, 0.8); font-family: 'Dancing Script', cursive; background: rgba(179, 221, 227, 0.9); padding: 20px 40px; border-radius: 15px; border: 3px solid #FF0066; transform: translateX(5px);">TOMA INFIEL</div>
+        </div>
+    `;
+    document.body.appendChild(finalContainer);
+}, 11500);
+
+            });
+        });
+        
+        // ============ CREAR EFECTOS DE CELEBRACIÓN ============
+        function createCelebrationEffects() {
+            console.log('Creando efectos de celebración');
+            
+            // Crear 100 confetis
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    createParticle('confetti');
+                }, i * 20);
+            }
+            
+            // Crear 30 globos
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    createParticle('balloon');
+                }, i * 50);
+            }
+            
+            // Crear 50 serpentinas
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    createParticle('serpentina');
+                }, i * 30);
+            }
+        }
+        
+        function createParticle(type) {
+            const particle = document.createElement('div');
+            
+            // Colores aleatorios
+            const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#feca57', '#ff9ff3', '#54a0ff', '#e74c3c', '#3498db', '#2ecc71'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            
+            let size = '';
+            if (type === 'confetti') {
+                size = '50px';
+            } else if (type === 'balloon') {
+                size = '80px';
+            } else if (type === 'serpentina') {
+                size = '15px';
+            }
+            
+            particle.style.cssText = `
+                position: fixed;
+                top: -50px;
+                left: ${Math.random() * 100}vw;
+                width: ${size};
+                height: ${type === 'balloon' ? '30px' : (type === 'serpentina' ? '20px' : size)};
+                background-color: ${color};
+                z-index: 10000;
+                animation: testFall 3s linear forwards;
+                animation-delay: ${Math.random() * 1}s;
+                ${type === 'balloon' ? 'border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;' : ''}
+            `;
+            
+            document.body.appendChild(particle);
+            
+            // Limpiar después de 4 segundos
+            setTimeout(() => {
+                if (particle.parentNode) {
+                    particle.remove();
+                }
+            }, 4000);
+        }
+        
+        // ============ OCULTAR ELEMENTOS ============
+        function hideExistingElements() {
+            console.log('Ocultando elementos');
+            const titleText = document.querySelector('.title-text');
+            const flagBackground = document.querySelector('.flag-background');
+            const mainContainer = document.querySelector('.main-container');
+            
+            if (titleText) titleText.classList.add('hidden');
+            if (flagBackground) flagBackground.classList.add('hidden');
+            if (mainContainer) mainContainer.classList.add('hidden');
+        }
+        
+        // ============ MOSTRAR MENSAJES ============
+        function showMessage(text, color) {
+            console.log('Mostrando mensaje:', text);
+            
+            // Limpiar mensajes anteriores
+            hideMessage();
+            
+            const message = document.createElement('div');
+            message.setAttribute('data-message', 'true');
+            message.textContent = text;
+            message.style.cssText = `
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                font-size: 4rem;
+                font-weight: 700;
+                color: ${color};
+                background: rgba(182, 245, 243, 0.95);
+                padding: 30px 50px;
+                border: 3px solid ${color};
+                border-radius: 20px;
+                z-index: 99999;
+                font-family: 'Dancing Script', cursive;
+                text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            `;
+            
+            document.body.appendChild(message);
+        }
+        
+        function hideMessage() {
+            const messages = document.querySelectorAll('[data-message="true"]');
+            messages.forEach(msg => {
+                if (msg.parentNode) {
+                    msg.remove();
+                }
+            });
+        }
+        
+        // ============ MOSTRAR FLORES AMARILLAS ============
+        function showYellowFlowers() {
+            console.log('Mostrando flores amarillas');
+            
+            for (let i = 0; i < 300; i++) {
+                setTimeout(() => {
+                    createYellowFlower();
+                }, i * 60);
+            }
+        }
+        
+function createYellowFlower() {
+    const flower = document.createElement('div');
+    flower.style.cssText = `
+        position: fixed;
+        top: -80px;
+        left: ${Math.random() * 100}vw;
+        width: 80px;
+        height: 80px;
+        background-image: url('/images/flores2.png');
+        background-size: cover;
+        background-position: center;
+        z-index: 9999;
+        opacity: 1; /* 🔹 aquí controlas la transparencia */
+        animation: testFall 4s ease-in forwards;
+        animation-delay: ${Math.random() * 1}s;
+    `;
+    document.body.appendChild(flower);
+            
+            document.body.appendChild(flower);
+            
+            // Limpiar después de 5 segundos
+            setTimeout(() => {
+                if (flower.parentNode) {
+                    flower.remove();
+                }
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
